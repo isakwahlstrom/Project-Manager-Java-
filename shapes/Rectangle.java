@@ -32,10 +32,10 @@ public class Rectangle extends FillableShape{
     @Override
     public void paint(GraphicsContext gc) {
         gc.setStroke(getColor());
-        gc.strokeRect(getX(), getY(), getHeight(), getWidth());
+        gc.strokeRect(getX(), getY(), getWidth(),getHeight());
         if(isFilled()) {
             gc.setFill(getColor());
-            gc.fillRect(getX(), getY(), getHeight(), getWidth());
+            gc.fillRect(getX(), getY(), getWidth(),getHeight() );
         }
     }
 
@@ -63,3 +63,4 @@ public class Rectangle extends FillableShape{
                 '}';
     }
 }
+
