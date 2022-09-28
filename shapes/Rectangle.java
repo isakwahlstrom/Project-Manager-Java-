@@ -57,7 +57,7 @@ public class Rectangle extends FillableShape{
 
     @Override
     public String toString() {
-        return "Rectangle{" +
+        return super.toString() +
                 "width=" + width +
                 ", height=" + height +
                 '}';
