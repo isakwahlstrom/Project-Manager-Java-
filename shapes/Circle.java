@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 
 public class Circle extends FillableShape {
     private double diameter;
+
     public Circle(double diameter) {
         super();
         this.diameter = diameter;
@@ -23,21 +24,30 @@ public class Circle extends FillableShape {
             double boxX, double boxY,
             double boxWidth, double boxHeight) {
         // If outside the box - calculate new dx and dy
-        if (x < boxX) {
-            dx = Math.abs(dx);
-        } else if (x > boxWidth) {
-            dx = -Math.abs(dx);
+        //super.constrain(boxX,boxY,boxWidth,boxHeight);
+        if (getX()  < boxX) {
+            setVelocity(getDx(),getDy());
+        } else if (getX()   > boxWidth) {
+            setVelocity((-1)*getDx(),getDy());
         }
-        if (y < boxY) {
-            dy = Math.abs(dy);
-        } else if (y > boxHeight) {
-            dy = -Math.abs(dy);
+        if (getY()< boxY) {
+            setVelocity(getDx(),getDy());
+        } else if (getY()  > boxHeight) {
+            setVelocity(getDx(),(-1)*getDy());
         }
     }
 
     @Override
-    public void paint(GraphicsContext gc) {
+    public String toString() {
+        return super.toString() +
+                "diameter=" + diameter +
+                '}';
+    }
 
+    @Override
+    public void paint(GraphicsContext gc) {
+        gc.setStroke(getColor());
+        gc.strokeOval(getX(),getY(),getDiameter(),getDiameter());
     }
 
 }
