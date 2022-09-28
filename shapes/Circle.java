@@ -7,7 +7,7 @@ public class Circle extends FillableShape {
     private double diameter;
 
     public Circle(double x, double y, Color color, double diameter) {
-        super(10,10,color);
+        super(x,y,color);
         this.diameter = diameter;
     }
 
@@ -18,21 +18,25 @@ public class Circle extends FillableShape {
     public void setDiameter(double diameter) {
         this.diameter = diameter;
     }
+    @Override
+    public void move(long elapsedTimeNs) {
+        super.move(elapsedTimeNs);
+    }
 
     @Override
     protected void constrain(
             double boxX, double boxY,
             double boxWidth, double boxHeight) {
         // If outside the box - calculate new dx and dy
-        //super.constrain(boxX,boxY,boxWidth,boxHeight);
-        if (getX()  < boxX || diameter < boxX) {
+        super.constrain(boxX,boxY,boxWidth,boxHeight);
+        if (diameter < boxX) {
             setVelocity(getDx(),getDy());
-        } else if (getX()  > boxWidth || diameter > boxWidth ) {
+        } else if (diameter > boxWidth ) {
             setVelocity((-1)*getDx(),getDy());
         }
-        if (getY()< boxY || diameter < boxY) {
+        if (diameter < boxY) {
             setVelocity(getDx(),getDy());
-        } else if (getY()  > boxHeight || diameter > boxHeight) {
+        } else if (diameter > boxHeight) {
             setVelocity(getDx(),(-1)*getDy());
         }
     }
