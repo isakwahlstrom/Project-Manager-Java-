@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 public class Circle extends FillableShape {
     private double diameter;
 
-    public Circle(double diameter) {
-        super();
+    public Circle(double x, double y, Color color, double diameter) {
+        super(10,10,color);
         this.diameter = diameter;
     }
 
@@ -25,14 +25,14 @@ public class Circle extends FillableShape {
             double boxWidth, double boxHeight) {
         // If outside the box - calculate new dx and dy
         //super.constrain(boxX,boxY,boxWidth,boxHeight);
-        if (getX()  < boxX) {
+        if (getX()  < boxX || diameter < boxX) {
             setVelocity(getDx(),getDy());
-        } else if (getX()   > boxWidth) {
+        } else if (getX()  > boxWidth || diameter > boxWidth ) {
             setVelocity((-1)*getDx(),getDy());
         }
-        if (getY()< boxY) {
+        if (getY()< boxY || diameter < boxY) {
             setVelocity(getDx(),getDy());
-        } else if (getY()  > boxHeight) {
+        } else if (getY()  > boxHeight || diameter > boxHeight) {
             setVelocity(getDx(),(-1)*getDy());
         }
     }
