@@ -44,6 +44,24 @@ public class Line extends Shape {
         gc.setStroke(getColor());
         gc.strokeLine(getX(),getY(),x2,y2);
     }
+    @Override
+    protected void constrain(
+            double boxX, double boxY,
+            double boxWidth, double boxHeight) {
+        // If outside the box - calculate new dx and dy
+        if (x2 < boxX) {
+           dx =  Math.abs(getDx());
+        } else if (x2 > boxWidth) {
+            dx = -Math.abs(getDx());
+        }
+        if (y2 < boxY) {
+            dy = Math.abs(getDy());
+        } else if (y2 > boxHeight) {
+            dy = -Math.abs(getDy());
+        }
+
+
+    }
 
     @Override
     public String toString() {
