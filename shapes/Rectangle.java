@@ -32,21 +32,25 @@ public class Rectangle extends FillableShape{
     @Override
     public void paint(GraphicsContext gc) {
         gc.setStroke(getColor());
-        gc.strokeRect(getX(),getY(), getHeight(), getWidth());
+        gc.strokeRect(getX(), getY(), getHeight(), getWidth());
+        if(isFilled()) {
+            gc.setFill(getColor());
+            gc.fillRect(getX(), getY(), getHeight(), getWidth());
+        }
     }
 
     @Override
     public void constrain(double boxX, double boxY, double boxWidth, double boxHeight) {
         // If outside the box - calculate new dx and dy
         super.constrain(boxX,boxY,boxWidth,boxHeight);
-        if (getX() < boxX) {
+        if (getX()-width < boxX) {
             setVelocity(getDx(),getDy());
-        } else if (getX() > boxWidth) {
+        } else if (width+getX() > boxWidth) {
             setVelocity((-1)*getDx(),getDy());
         }
-        if (getY() < boxY) {
+        if (getY()-height< boxY) {
             setVelocity(getDx(),getDy());
-        } else if (getY() > boxHeight) {
+        } else if (height+getY() > boxHeight) {
             setVelocity(getDx(),(-1)*getDy());
         }
     }
@@ -59,3 +63,4 @@ public class Rectangle extends FillableShape{
                 '}';
     }
 }
+
