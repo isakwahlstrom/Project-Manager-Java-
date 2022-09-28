@@ -48,16 +48,17 @@ public class Line extends Shape {
     protected void constrain(
             double boxX, double boxY,
             double boxWidth, double boxHeight) {
+        super.constrain(boxX,boxY,boxWidth,boxHeight);
         // If outside the box - calculate new dx and dy
         if (x2 < boxX) {
-           dx =  Math.abs(getDx());
-        } else if (x2 > boxWidth) {
-            dx = -Math.abs(getDx());
+            setVelocity(getDx(),getDy());
+        } else if (x2 > boxWidth ) {
+            setVelocity((-1)*getDx(),getDy());
         }
         if (y2 < boxY) {
-            dy = Math.abs(getDy());
+            setVelocity(getDx(),getDy());
         } else if (y2 > boxHeight) {
-            dy = -Math.abs(getDy());
+            setVelocity(getDx(),(-1)*getDy());
         }
 
 
