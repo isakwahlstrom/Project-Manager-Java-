@@ -29,16 +29,17 @@ public class Circle extends FillableShape {
             double boxWidth, double boxHeight) {
         // If outside the box - calculate new dx and dy
         super.constrain(boxX,boxY,boxWidth,boxHeight);
-        if (diameter < boxX) {
+        if (getX()-diameter < boxX) {
             setVelocity(getDx(),getDy());
-        } else if (diameter > boxWidth ) {
+        } else if ((getX()+diameter) > boxWidth ) {
             setVelocity((-1)*getDx(),getDy());
         }
-        if (diameter < boxY) {
+        if (getY()-diameter < boxY) {
             setVelocity(getDx(),getDy());
-        } else if (diameter > boxHeight) {
+        } else if ((getY()+diameter) > boxHeight) {
             setVelocity(getDx(),(-1)*getDy());
         }
+        
     }
 
     @Override
