@@ -61,6 +61,7 @@ public class Project implements Comparable<Project>, Serializable {
     }
     public Task addTask(String descr, Prio prio) {
         Task task = new Task(descr,prio,nextTaskId);
+        task.setState(TaskState.IN_PROGRESS);
         listOfTasks.add(task);
         nextTaskId++;
         return task;
@@ -69,6 +70,9 @@ public class Project implements Comparable<Project>, Serializable {
         int nrofdone = 0;
         if (listOfTasks.isEmpty()) {
             return ProjectState.EMPTY;
+        }
+        if(findTasks(new NotDoneMatcher()).isEmpty()) {
+            return ProjectState.COMPLETED;
         }
         return ProjectState.ONGOING;
     }
