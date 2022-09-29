@@ -26,6 +26,9 @@ public class Task<T> implements Comparable<Task>, Serializable {
     }
 
     public void setTakenBy(String takenBy) {
+        if(this.takenBy!=null) {
+            throw new IllegalStateException("Task already taken");
+        }
         lastUpdate = LocalDate.now();
         this.takenBy = takenBy;
     }
@@ -45,16 +48,16 @@ public class Task<T> implements Comparable<Task>, Serializable {
                 "description='" + description + '\'' +
                 ", id=" + id +
                 ", prio=" + prio +
-                '}';
+                '}' + ", takenby=" + takenBy;
     }
     @Override
     public int compareTo(Task o) {
         if(this.prio.equals(o.prio)) {
-            System.out.println("Prio equal!");
+            //System.out.println("Prio equal!");
             return 1;
         }
         if(this.description.equals(o.description)) {
-            System.out.println("Description equal!");
+            //System.out.println("Description equal!");
             return 0;
         }
         return -1;
