@@ -51,14 +51,12 @@ public class Task<T> implements Comparable<Task>, Serializable {
     public int compareTo(Task o) {
         if(this.prio.equals(o.prio)) {
             System.out.println("Prio equal!");
-        } else {
-            if(this.description.equals(o.description)) {
-                System.out.println("Description equal!");
-            }
+            return 1;
         }
-        //Compare
-        // Return 0 if equal!
-        // else
-        return 0;
+        if(this.description.equals(o.description)) {
+            System.out.println("Description equal!");
+            return 0;
+        }
+        return -1;
     }
 }
