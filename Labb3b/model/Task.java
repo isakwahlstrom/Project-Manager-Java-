@@ -16,13 +16,36 @@ public class Task<T> implements Comparable<Task>, Serializable {
     private Prio prio;
 
 
-
     public Task(String descr, Prio prio, int id) {
         this.id = id;
         this.prio = prio;
         this.description = descr;
         lastUpdate = LocalDate.now();
+        state = TaskState.TO_DO;
+        takenBy = null;
+    }
+    public String getDescription() {
+        return description;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getTakenBy() {
+        return takenBy;
+    }
+
+    public TaskState getState() {
+        return state;
+    }
+
+    public LocalDate getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public Prio getPrio() {
+        return prio;
     }
 
     public void setTakenBy(String takenBy) {
@@ -44,22 +67,40 @@ public class Task<T> implements Comparable<Task>, Serializable {
     }
     @Override
     public String toString() {
-        return "Task{" +
-                "description='" + description + '\'' +
-                ", id=" + id +
-                ", prio=" + prio +
-                '}' + ", takenby=" + takenBy;
+        if(takenBy!=null) {
+            return "Task: " +
+                    "description:" + description +
+                    ", ID:" + id +
+                    ", Priority:" + prio
+                    + ", Assigned to:" + takenBy + ", state:" + state + "\n";
+        }
+        return "Task: " +
+            "Description:" + description  +
+                    ", ID:" + id +
+                    ", Priority:" + prio +
+                    ", State:" + state + "\n";
+
+    }
+   @Override
+    public boolean equals(Object o) {
+        if(this==o) {
+            return true;
+        }
+        if(o==null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Task task = (Task) o;
+        return(this.prio==((Task) o).getPrio() || this.description==((Task)o).getDescription());
+
     }
     @Override
     public int compareTo(Task o) {
-        if(this.prio.equals(o.prio)) {
-            //System.out.println("Prio equal!");
-            return 1;
-        }
-        if(this.description.equals(o.description)) {
-            //System.out.println("Description equal!");
+        if (this.equals(o)) {
             return 0;
         }
-        return -1;
+        if(!this.equals(o)) {
+            return -1;
+        }
+        return 1;
     }
 }
