@@ -40,9 +40,26 @@ public class Project implements Comparable<Project>, Serializable {
     public int getNextTaskId() {
         return nextTaskId;
     }
-    /*public LocalDate getLastUpdated() {
-
-    }*/
+    public LocalDate getLastUpdated() {
+       Task tmp;
+        if(listOfTasks.isEmpty()) {
+            return created;
+        }
+        tmp = listOfTasks.get(0);
+        //tmp.getLastUpdate().withMonth(11);
+        for(int i=1;i< listOfTasks.size();i++) {
+            if(tmp.getLastUpdate().getYear()==(listOfTasks.get(i).getLastUpdate()).getYear()) {
+                if(tmp.getLastUpdate().getDayOfYear()<listOfTasks.get(i).getLastUpdate().getDayOfYear()) {
+                        tmp = listOfTasks.get(i);
+                }
+            } else {
+                if(tmp.getLastUpdate().getYear()<(listOfTasks.get(i).getLastUpdate()).getYear()) {
+                    tmp = listOfTasks.get(i);
+                }
+            }
+        }
+        return tmp.getLastUpdate();
+    }
     public ArrayList<Task> getListOfTasks() {
         ArrayList<Task> temp = new ArrayList<>();
         for(int i=0;i< listOfTasks.size();i++) {
@@ -57,6 +74,8 @@ public class Project implements Comparable<Project>, Serializable {
                 tmp.add(i,listOfTasks.get(i));
             }
         }
+        // Sortera!!!!!!!!!!!!! HUR????
+
      return tmp;
     }
     public Task addTask(String descr, Prio prio) {
@@ -76,10 +95,20 @@ public class Project implements Comparable<Project>, Serializable {
         }
         return ProjectState.ONGOING;
     }
+    //@Override
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
 
     @Override
     public int compareTo(Project o) {
-        return 0;
+        if(this.equals(o));
+        return 1;
+
+
     }
 
     @Override
