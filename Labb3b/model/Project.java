@@ -74,7 +74,7 @@ public class Project implements Comparable<Project>, Serializable {
                 tmp.add(i,listOfTasks.get(i));
             }
         }
-        // Sortera!!!!!!!!!!!!! HUR????
+        Collections.sort(tmp);
 
      return tmp;
     }
