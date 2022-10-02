@@ -95,7 +95,7 @@ public class Project implements Comparable<Project>, Serializable {
         }
         return ProjectState.ONGOING;
     }
-    //@Override
+  //Skriva om nedan??? både equals och compareTo????
 
     @Override
     public boolean equals(Object obj) {
