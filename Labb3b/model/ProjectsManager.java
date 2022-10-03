@@ -28,11 +28,16 @@ public class ProjectsManager {
     }
 
     public boolean isTitleUnique(String title) {
-        return listOfProjects.contains(title);
+        for(int i=0;i< listOfProjects.size();i++) {
+            if(listOfProjects.get(i).getTitle()==title) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Project addProject(String title, String descr) {
-        if(isTitleUnique(title))
+        if(!isTitleUnique(title))
             throw new TitleNotUniqueException("This title already exist...");
         Project newProject = new Project(title, descr, nextProjectId);
         listOfProjects.add(newProject);
@@ -51,10 +56,16 @@ public class ProjectsManager {
     }
 
     public ArrayList<Project> findProjects(String titleStr) {
-        ArrayList<Project> list = new ArrayList<Project>();
-
+        ArrayList<Project> list = new ArrayList<>();
+        for(int i=0;i<listOfProjects.size();i++) {
+            if(listOfProjects.get(i).getTitle()==titleStr) {
+                list.addAll(listOfProjects);
+            }
+        }
         return list;
     }
+
+
 
     private int getHighestId() {
         return listOfProjects.size();
