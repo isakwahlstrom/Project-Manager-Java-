@@ -16,7 +16,6 @@ import java.util.Scanner;
 class CurrentProjectUI {
     private Project currentProject;
     private final Scanner scan;
-
     // package private visibility - only visible to other classes in
     // package ui - intended for MainUI.
     CurrentProjectUI(Scanner scan) {
