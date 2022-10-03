@@ -2,8 +2,10 @@
 
 package model;
 
+import model.matcher.ITaskMatcher;
+import model.matcher.NotDoneMatcher;
+
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +35,9 @@ public class Project implements Comparable<Project>, Serializable {
 
     public int getNextTaskId() { return nextTaskId; }
 
+    public Task getTaskById(int id) {
+        return listOfTasks.get(id);
+    }
     public ArrayList<Task> getListOfTasks() {
         ArrayList<Task> temp = new ArrayList<>();
         for(int i=0;i< listOfTasks.size();i++) {
@@ -58,14 +63,8 @@ public class Project implements Comparable<Project>, Serializable {
         nextTaskId++;
         return task;
     }
-
     public Task removeTask(Task task){
-        listOfTasks.add(task);
-        System.out.println(task.toString());
-        System.out.println(getListOfTasks());
         listOfTasks.remove(task);
-        System.out.println(getListOfTasks());
-
         return task;
     }
 
@@ -122,4 +121,5 @@ public class Project implements Comparable<Project>, Serializable {
                 ", nextTaskId=" + nextTaskId +
                 '}';
     }
+
 }
