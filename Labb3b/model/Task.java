@@ -68,39 +68,37 @@ public class Task<T> implements Comparable<Task>, Serializable {
     @Override
     public String toString() {
         if(takenBy!=null) {
-            return "Task: " +
-                    "description:" + description +
-                    ", ID:" + id +
-                    ", Priority:" + prio
-                    + ", Assigned to:" + takenBy + ", state:" + state + "\n";
+            return  "Task description: " + description +
+                    ", ID: " + id +
+                    ", Priority: " + prio
+                    + ", Assigned to: " + takenBy + ", state: " + state + "\n";
         }
-        return "Task: " +
-            "Description:" + description  +
-                    ", ID:" + id +
-                    ", Priority:" + prio +
-                    ", State:" + state + "\n";
+        return " Task Description: " + description  +
+                ", ID: " + id +
+                ", Priority: " + prio +
+                ", State: " + state + "\n";
 
     }
-    
+
     //Skriva om equals????
-    
+
     @Override
     public int compareTo(Task o) {
-        if(this.prio.compareTo(o.prio)<0) {
+        if (this.prio.compareTo(o.prio) > 0) {
             return -1;
         } else {
-            if (this.prio.compareTo(o.prio) > 0) {
+            if (this.prio.compareTo(o.prio) < 0) {
                 return 1;
             }
         }
-            if(this.description.compareTo(o.description)<0) {
-                return -1;
-            } else {
-                if(this.description.compareTo(o.description)>0) {
-                    return 1;
-                }
+        if (this.description.compareTo(o.description) < 0) {
+            return -1;
+        } else {
+            if(this.description.compareTo(o.description) > 0) {
+                return 1;
             }
-            return 0;
+        }
+        return 0;
     }
 
 }
