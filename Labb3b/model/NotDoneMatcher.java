@@ -1,4 +1,8 @@
-package model;
+package model.matcher;
+
+import model.Task;
+import model.TaskState;
+import model.matcher.ITaskMatcher;
 
 public class NotDoneMatcher implements ITaskMatcher {
     @Override
