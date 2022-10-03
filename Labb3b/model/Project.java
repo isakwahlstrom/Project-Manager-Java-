@@ -1,3 +1,5 @@
+// removeTask och compareTo ej gjorda
+
 package model;
 
 import java.io.Serializable;
@@ -21,45 +23,16 @@ public class Project implements Comparable<Project>, Serializable {
         listOfTasks = new ArrayList<Task>();
         nextTaskId = 1;
     }
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() { return title; }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
 
-    public LocalDate getCreated() {
-        return created;
-    }
+    public LocalDate getCreated() { return created; }
 
-    public int getNextTaskId() {
-        return nextTaskId;
-    }
-    public LocalDate getLastUpdated() {
-       Task tmp;
-        if(listOfTasks.isEmpty()) {
-            return created;
-        }
-        tmp = listOfTasks.get(0);
-        //tmp.getLastUpdate().withMonth(11);
-        for(int i=1;i< listOfTasks.size();i++) {
-            if(tmp.getLastUpdate().getYear()==(listOfTasks.get(i).getLastUpdate()).getYear()) {
-                if(tmp.getLastUpdate().getDayOfYear()<listOfTasks.get(i).getLastUpdate().getDayOfYear()) {
-                        tmp = listOfTasks.get(i);
-                }
-            } else {
-                if(tmp.getLastUpdate().getYear()<(listOfTasks.get(i).getLastUpdate()).getYear()) {
-                    tmp = listOfTasks.get(i);
-                }
-            }
-        }
-        return tmp.getLastUpdate();
-    }
+    public int getNextTaskId() { return nextTaskId; }
+
     public ArrayList<Task> getListOfTasks() {
         ArrayList<Task> temp = new ArrayList<>();
         for(int i=0;i< listOfTasks.size();i++) {
@@ -75,40 +48,68 @@ public class Project implements Comparable<Project>, Serializable {
             }
         }
         Collections.sort(tmp);
-
-     return tmp;
+        return tmp;
     }
+
     public Task addTask(String descr, Prio prio) {
         Task task = new Task(descr,prio,nextTaskId);
-        task.setState(TaskState.IN_PROGRESS);
+        //task.setState(TaskState.IN_PROGRESS);
         listOfTasks.add(task);
         nextTaskId++;
         return task;
     }
-    public ProjectState getProjectState() {
-        int nrofdone = 0;
-        if (listOfTasks.isEmpty()) {
+
+    public Task removeTask(Task task){
+        listOfTasks.add(task);
+        System.out.println(task.toString());
+        System.out.println(getListOfTasks());
+        listOfTasks.remove(task);
+        System.out.println(getListOfTasks());
+
+        return task;
+    }
+
+    public ProjectState getProjectState() {     //getState()
+        if (listOfTasks.isEmpty())
             return ProjectState.EMPTY;
-        }
-        if(findTasks(new NotDoneMatcher()).isEmpty()) {
+
+        if(findTasks(new NotDoneMatcher()).isEmpty())
             return ProjectState.COMPLETED;
-        }
+
         return ProjectState.ONGOING;
     }
-  //Skriva om nedan??? både equals och compareTo????
+    //Skriva om nedan??? både equals och compareTo????
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public LocalDate getLastUpdated() {
+        Task tmp;
+        if(listOfTasks.isEmpty()) {
+            return created;
+        }
+        tmp = listOfTasks.get(0);
+        //tmp.getLastUpdate().withMonth(11);
+        for(int i=1;i< listOfTasks.size();i++) {
+            if(tmp.getLastUpdate().getYear()==(listOfTasks.get(i).getLastUpdate()).getYear()) {
+                if(tmp.getLastUpdate().getDayOfYear()<listOfTasks.get(i).getLastUpdate().getDayOfYear()) {
+                    tmp = listOfTasks.get(i);
+                }
+            } else {
+                if(tmp.getLastUpdate().getYear()<(listOfTasks.get(i).getLastUpdate()).getYear()) {
+                    tmp = listOfTasks.get(i);
+                }
+            }
+        }
+        return tmp.getLastUpdate();
     }
-
 
     @Override
     public int compareTo(Project o) {
         if(this.equals(o));
         return 1;
+    }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
