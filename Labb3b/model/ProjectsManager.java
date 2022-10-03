@@ -23,7 +23,8 @@ public class ProjectsManager {
     }
 
     public void setProject(ArrayList<Project> incomingProjects) {
-
+        listOfProjects.clear();
+        listOfProjects.addAll(incomingProjects);
     }
 
     public boolean isTitleUnique(String title) {
@@ -31,7 +32,7 @@ public class ProjectsManager {
     }
 
     public Project addProject(String title, String descr) {
-        if(!isTitleUnique(title))
+        if(isTitleUnique(title))
             throw new TitleNotUniqueException("This title already exist...");
         Project newProject = new Project(title, descr, nextProjectId);
         listOfProjects.add(newProject);
@@ -64,6 +65,6 @@ public class ProjectsManager {
         return "ALL PROJECTS: (ProjectsManager) { \n" +
                 "nextProjectId=" + nextProjectId +
                 ", listOfProjects=" + listOfProjects +
-                '}';
+                "} \n";
     }
 }
