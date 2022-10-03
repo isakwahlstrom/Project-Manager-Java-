@@ -1,4 +1,4 @@
-/*package ui;
+package ui;
 
 import model.Project;
 import model.ProjectsManager;
@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 public class MainUI {
 
-    private final Scanner scan;
-    private final ProjectsManager manager;
+    private  Scanner scan;
+    private  ProjectsManager manager;
     private final CurrentProjectUI currentProjectUI;
 
     public MainUI(ProjectsManager manager) {
@@ -52,7 +52,8 @@ public class MainUI {
 
     private void findProjects() {
         System.out.print("Project name? ");
-        String name = scan.nextLine();
+        String name = "a";
+        //System.out.println(name);
         List<Project> result = manager.findProjects(name);
         if (result.isEmpty()) {
             System.out.println("No matches.");
@@ -98,4 +99,3 @@ public class MainUI {
         System.out.println("----------");
     }
 }
-*/
