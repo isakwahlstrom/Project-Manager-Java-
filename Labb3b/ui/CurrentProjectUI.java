@@ -1,6 +1,6 @@
-/*package ui;
+package ui;
 
-import model.matcher.AllTasksmatcher;
+//import model.matcher.AllTasksmatcher;
 import model.matcher.ITaskMatcher;
 import model.matcher.NotDoneMatcher;
 import model.matcher.PrioMatcher;
@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Scanner;
 
 
- * User interactions for a specific project, current project.
- * The user selects actions on current project in the projectLoop method.
+ //* User interactions for a specific project, current project.
+ //* The user selects actions on current project in the projectLoop method.
 
 class CurrentProjectUI {
     private Project currentProject;
@@ -41,7 +41,7 @@ class CurrentProjectUI {
 
             switch (choice) {
                 case 'T':
-                    viewTasks(new AllTasksmatcher());
+                    //viewTasks(new AllTasksmatcher());
                     break;
                 case 'N':
                     viewTasks(new NotDoneMatcher());
@@ -123,4 +123,3 @@ class CurrentProjectUI {
         }
     }
 }
-*/
