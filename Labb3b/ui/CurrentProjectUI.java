@@ -1,7 +1,7 @@
 package ui;
 
 //import model.matcher.AllTasksmatcher;
-import model.exceptions.IllegalStateException;
+import model.exceptions.NameTakenException;
 import model.matcher.ITaskMatcher;
 import model.matcher.NotDoneMatcher;
 import model.matcher.PrioMatcher;
@@ -91,10 +91,14 @@ class CurrentProjectUI {
             System.out.print("New state (I)n progress (D)one? ");
             char stateChar = InputUtils.scanAndReturnFirstChar(scan);
             if (stateChar == 'I') {
-                System.out.print("Taken by (name) ");
-                String emailStr = scan.nextLine();
-                task.setState(TaskState.IN_PROGRESS);
-                task.setTakenBy(emailStr);
+               try {
+                    System.out.print("Taken by (name) ");
+                    String person = scan.nextLine();
+                    task.setState(TaskState.IN_PROGRESS);
+                    task.setTakenBy(person);
+                } catch(NameTakenException e){
+                   System.out.println("Task already assigned to " + task.getTakenBy());
+                }
             } else if (stateChar == ('D')) {
                 task.setState(TaskState.DONE);
             }
