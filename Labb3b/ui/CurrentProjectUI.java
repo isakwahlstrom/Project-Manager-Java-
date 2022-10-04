@@ -1,11 +1,13 @@
 package ui;
 
 //import model.matcher.AllTasksmatcher;
+import model.exceptions.IllegalStateException;
 import model.matcher.ITaskMatcher;
 import model.matcher.NotDoneMatcher;
 import model.matcher.PrioMatcher;
 import model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,7 +42,7 @@ class CurrentProjectUI {
 
             switch (choice) {
                 case 'T':
-                    //viewTasks(new AllTasksmatcher());
+                    printTasks(currentProject.getListOfTasks());
                     break;
                 case 'N':
                     viewTasks(new NotDoneMatcher());
@@ -65,7 +67,7 @@ class CurrentProjectUI {
 
     private void viewTasks(ITaskMatcher matcher) {
         System.out.println(currentProject.toString());
-        List<Task> tasks = currentProject.findTasks(matcher);
+        ArrayList<Task> tasks = currentProject.findTasks(matcher);
         printTasks(tasks);
     }
 
@@ -81,19 +83,19 @@ class CurrentProjectUI {
     private void updateTask() {
         System.out.print("Task id? ");
         int id = scan.nextInt();
+        id--;
         scan.nextLine(); //remove "new line" from scanner buffer
         Task task = currentProject.getTaskById(id);
         if (task != null) {
             System.out.println(task);
-            System.out.print("New state (T)odo (D)one? ");
+            System.out.print("New state (I)n progress (D)one? ");
             char stateChar = InputUtils.scanAndReturnFirstChar(scan);
-            if (stateChar == 'T') {
-                System.out.print("Taken by (name or email address)? ");
+            if (stateChar == 'I') {
+                System.out.print("Taken by (name) ");
                 String emailStr = scan.nextLine();
-                task.setState(TaskState.TO_DO);
+                task.setState(TaskState.IN_PROGRESS);
                 task.setTakenBy(emailStr);
-            }
-            else if(stateChar == ('D')) {
+            } else if (stateChar == ('D')) {
                 task.setState(TaskState.DONE);
             }
         } else {
@@ -112,7 +114,7 @@ class CurrentProjectUI {
         System.out.println("----------");
     }
 
-    private void printTasks(List<Task> tasks) {
+    private void printTasks(ArrayList<Task> tasks) {
         if (tasks.isEmpty()) {
             System.out.println("No tasks added");
         } else {
