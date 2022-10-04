@@ -3,7 +3,6 @@ package ui;
 import model.Project;
 import model.ProjectsManager;
 import model.exceptions.TitleNotUniqueException;
-
 import java.util.List;
 import java.util.Scanner;
 
