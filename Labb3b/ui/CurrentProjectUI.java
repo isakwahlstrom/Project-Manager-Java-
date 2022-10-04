@@ -58,6 +58,14 @@ class CurrentProjectUI {
                     break;
                 case 'X':
                     break;
+                case 'R':
+                    removeTask();
+                    break;
+                case 'S':
+                    getProjectState();
+                    break;
+                case 'L':
+                    lastUpdated(); break;
                 default:
                     System.out.println("Unknown command");
             }
@@ -114,6 +122,9 @@ class CurrentProjectUI {
         System.out.println("H - list high priority tasks");
         System.out.println("A - add task");
         System.out.println("U - update task");
+        System.out.println("R - remove task");
+        System.out.println("S - Get project state");
+        System.out.println("L - Get last updated task");
         System.out.println("X - exit project menu");
         System.out.println("----------");
     }
@@ -126,5 +137,27 @@ class CurrentProjectUI {
                 System.out.println(task.toString());
             }
         }
+    }
+    private void removeTask() {
+        if(!currentProject.getListOfTasks().isEmpty()) {
+            System.out.print("Task id? ");
+            int id = scan.nextInt();
+            id--;
+            scan.nextLine(); //remove "new line" from scanner buffer
+            Task task = currentProject.getTaskById(id);
+            currentProject.removeTask(task);
+            System.out.println("Task removed: " + task.toString());
+        } else {
+            System.out.println("Current project is empty, can not delete task");
+        }
+    }
+    private void getProjectState() {
+        System.out.println("Project is: " + currentProject.getProjectState());
+    }
+    private void lastUpdated() {
+        if(!currentProject.getListOfTasks().isEmpty())
+        System.out.println("Last updated task was: " + currentProject.getLastUpdated());
+       else
+           System.out.println("Project was created: " + currentProject.getLastUpdated());
     }
 }
