@@ -2,6 +2,7 @@ package ui;
 
 import model.Project;
 import model.ProjectsManager;
+import model.exceptions.TitleNotUniqueException;
 
 import java.util.List;
 import java.util.Scanner;
@@ -52,8 +53,7 @@ public class MainUI {
 
     private void findProjects() {
         System.out.print("Project name? ");
-        String name = "a";
-        //System.out.println(name);
+        String name = scan.nextLine();
         List<Project> result = manager.findProjects(name);
         if (result.isEmpty()) {
             System.out.println("No matches.");
@@ -68,18 +68,23 @@ public class MainUI {
         try {
             System.out.print("Project title: ");
             String title = scan.nextLine();
+
             System.out.print("Description: ");
             String description = scan.nextLine();
+
             Project newProject = manager.addProject(title, description);
             System.out.println("Project created: " + newProject);
-        } catch (IllegalArgumentException e) {
-            System.out.println("A project with that title already exists.");
+        }  catch(TitleNotUniqueException p) {
+            System.out.println("Title already exists.");
         }
     }
+
+
 
     private void manageProject() {
         System.out.print("Project id? ");
         int id = scan.nextInt();
+        id--;
         scan.nextLine(); //remove "new line" from scanner buffer
         Project currentProject = manager.getProjectById(id);
         if (currentProject != null) { // TODO: This is ugly!
