@@ -29,7 +29,7 @@ public class ProjectsManager {
 
     public boolean isTitleUnique(String title) {
         for(int i=0;i< listOfProjects.size();i++) {
-            if(listOfProjects.get(i).getTitle()==title) {
+            if(listOfProjects.get(i).getTitle().equals(title)) {
                 return false;
             }
         }
@@ -59,7 +59,7 @@ public class ProjectsManager {
         ArrayList<Project> list = new ArrayList<>();
         for(int i=0;i<listOfProjects.size();i++) {
             if(listOfProjects.get(i).getTitle().equals(titleStr)) {
-                list.addAll(listOfProjects);
+                list.add(listOfProjects.get(i));
             }
         }
         return list;
