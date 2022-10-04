@@ -58,7 +58,7 @@ public class ProjectsManager {
     public ArrayList<Project> findProjects(String titleStr) {
         ArrayList<Project> list = new ArrayList<>();
         for(int i=0;i<listOfProjects.size();i++) {
-            if(listOfProjects.get(i).getTitle()==titleStr) {
+            if(listOfProjects.get(i).getTitle().equals(titleStr)) {
                 list.addAll(listOfProjects);
             }
         }
