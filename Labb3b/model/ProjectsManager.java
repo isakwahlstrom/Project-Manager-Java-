@@ -65,8 +65,6 @@ public class ProjectsManager {
         return list;
     }
 
-
-
     private int getHighestId() {
         return listOfProjects.size();
     }
