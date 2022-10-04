@@ -47,9 +47,9 @@ public class Project implements Comparable<Project>, Serializable {
     }
     public ArrayList<Task> findTasks(ITaskMatcher matcher) {
         ArrayList<Task> tmp = new ArrayList<>();
-        for (int i=0;i< listOfTasks.size();i++) {
+        for (int i=0;i<listOfTasks.size();i++) {
             if(matcher.match(listOfTasks.get(i))) {
-                tmp.add(i,listOfTasks.get(i));
+                tmp.add(listOfTasks.get(i));
             }
         }
         Collections.sort(tmp);
