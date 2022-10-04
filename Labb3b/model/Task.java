@@ -81,8 +81,10 @@ public class Task<T> implements Comparable<Task>, Serializable {
 
     }
 
-    //Skriva om equals????
+    public boolean equals(Task o) {
+            return (this.prio == o.getPrio() && this.description == o.getDescription());
 
+    }
     @Override
     public int compareTo(Task o) {
         if (this.prio.compareTo(o.prio) > 0) {
