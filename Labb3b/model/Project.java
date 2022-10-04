@@ -102,13 +102,15 @@ public class Project implements Comparable<Project>, Serializable {
 
     @Override
     public int compareTo(Project o) {
-        if(this.equals(o));
-        return 1;
+        if(this.getTitle().compareTo(o.getTitle()) > 0)
+            return -1;
+        if(this.getTitle().compareTo(o.getTitle()) < 0)
+            return 1;
+        return 0;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Project o) {
+        return (this.getTitle().equals(o.getTitle())); // Strings...
     }
 
     @Override
