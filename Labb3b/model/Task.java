@@ -50,7 +50,7 @@ public class Task<T> implements Comparable<Task>, Serializable {
 
     public void setTakenBy(String takenBy) {
         if(this.takenBy!=null) {
-            throw new IllegalStateException("Task already taken");
+            throw new IllegalStateException("Task already assigned to " + takenBy);
         }
         lastUpdate = LocalDate.now();
         this.takenBy = takenBy;
