@@ -57,7 +57,7 @@ public class Task implements Comparable<Task>, Serializable {
     /**
      * Assigns the task to a name.
      * @param takenBy is a string containing the name.
-     * @throws NameTakenException if the name is already taken.
+     * @throws NameTakenException if the task is already taken.
      */
     public void setTakenBy(String takenBy) {
         if(this.takenBy!=null) {
@@ -104,6 +104,7 @@ public class Task implements Comparable<Task>, Serializable {
      * @param other is the compared object.
      * @return true if both tasks' prio and description is the same, else return false.
      */
+
     @Override
     public boolean equals(Object other) {
         if(other instanceof Task) {
@@ -121,10 +122,10 @@ public class Task implements Comparable<Task>, Serializable {
     @Override
     public int compareTo(Task other) {
         int result = 0;
-        result = this.prio.compareTo(other.prio);
+        result = this.prio.toString().compareTo(other.prio.toString());
         if (result != 0) return result;
         else {
-            return (result = this.description.compareTo(other.description));
+            return this.description.compareTo(other.description);
         }
     }
 }
