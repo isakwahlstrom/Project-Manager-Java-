@@ -1,7 +1,6 @@
-
 package model;
-import model.exceptions.NameTakenException;
 
+import model.exceptions.NameTakenException;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -22,29 +21,18 @@ public class Task<T> implements Comparable<Task>, Serializable {
         state = TaskState.TO_DO;
         takenBy = null;
     }
-    public String getDescription() {
-        return description;
-    }
+    
+    public String getDescription() {return description;}
 
-    public int getId() {
-        return id;
-    }
+    public int getId() {return id;}
 
-    public String getTakenBy() {
-        return takenBy;
-    }
+    public String getTakenBy() {return takenBy;}
 
-    public TaskState getState() {
-        return state;
-    }
+    public TaskState getState() {return state;}
 
-    public LocalDate getLastUpdate() {
-        return lastUpdate;
-    }
+    public LocalDate getLastUpdate() {return lastUpdate;}
 
-    public Prio getPrio() {
-        return prio;
-    }
+    public Prio getPrio() {return prio;}
 
     public void setTakenBy(String takenBy) {
         if(this.takenBy!=null) {
@@ -75,7 +63,6 @@ public class Task<T> implements Comparable<Task>, Serializable {
                 ", ID: " + id +
                 ", Priority: " + prio +
                 ", State: " + state + "\n";
-
     }
 
     @Override
