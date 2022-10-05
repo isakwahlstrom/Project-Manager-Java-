@@ -1,9 +1,7 @@
 package io;
 
 import model.Project;
-
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,7 +24,6 @@ public class ProjectsFileIO {
                 out.close();
             }
         }
-
     }
 
     /*
@@ -46,7 +43,6 @@ public class ProjectsFileIO {
             }
         }
     }
-
 
     private ProjectsFileIO() {}
 }
