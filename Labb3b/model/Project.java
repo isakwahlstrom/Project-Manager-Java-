@@ -1,15 +1,12 @@
-// removeTask och compareTo ej gjorda
 
 package model;
-
 import model.matcher.ITaskMatcher;
 import model.matcher.NotDoneMatcher;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-public class Project implements Comparable<Project>, Serializable {
+public class Project<T> implements Comparable<Project>, Serializable {
     private String title;
     private int id;
     private String description;
@@ -17,7 +14,7 @@ public class Project implements Comparable<Project>, Serializable {
     private int nextTaskId;
     private ArrayList<Task> listOfTasks;
 
-    public Project(String title, String descr, int id) {
+    Project(String title, String descr, int id) {
         this.title = title;
         this.id = id;
         this.description = descr;
@@ -36,7 +33,15 @@ public class Project implements Comparable<Project>, Serializable {
     public int getNextTaskId() { return nextTaskId; }
 
     public Task getTaskById(int id) {
-        return listOfTasks.get(id);
+        int position = 0;
+        for(int i=0;i< listOfTasks.size();i++) {
+            if(id==listOfTasks.get(i).getId())
+               position = i;
+            else {
+                throw new IllegalStateException("This task-ID does not exist");
+            }
+        }
+        return listOfTasks.get(position);
     }
     public ArrayList<Task> getListOfTasks() {
         ArrayList<Task> temp = new ArrayList<>();
@@ -63,8 +68,10 @@ public class Project implements Comparable<Project>, Serializable {
         nextTaskId++;
         return task;
     }
+
     public Task removeTask(Task task){
         listOfTasks.remove(task);
+        //nextTaskId--;
         return task;
     }
 
@@ -77,7 +84,6 @@ public class Project implements Comparable<Project>, Serializable {
 
         return ProjectState.ONGOING;
     }
-    //Skriva om nedan??? både equals och compareTo????
 
     public LocalDate getLastUpdated() {
         Task tmp;
@@ -101,16 +107,17 @@ public class Project implements Comparable<Project>, Serializable {
     }
 
     @Override
-    public int compareTo(Project o) {
-        if(this.getTitle().compareTo(o.getTitle()) > 0)
-            return -1;
-        if(this.getTitle().compareTo(o.getTitle()) < 0)
-            return 1;
-        return 0;
+    public boolean equals(Object obj) {
+        if(obj instanceof Project) {
+            Project project = (Project) obj;
+            return (this.getTitle().equals(project.getTitle()));
+        }
+        return false;
     }
 
-    public boolean equals(Project o) {
-        return (this.getTitle().equals(o.getTitle())); // Strings...
+    @Override
+    public int compareTo(Project other) {
+        return this.title.compareTo(other.title);
     }
 
     @Override
