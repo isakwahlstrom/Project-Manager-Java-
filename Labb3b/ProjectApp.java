@@ -11,10 +11,9 @@ import java.util.List;
 
 public class ProjectApp {
 
-    private static final String FILE_NAME = "projectsss.txt";
+    private static final String FILE_NAME = "project.txt";
 
     public void run() throws Exception { // we do not catch all exceptions
-
         File projectsFile = new File(FILE_NAME);
         ProjectsManager projectsManager = new ProjectsManager();
         boolean couldReadFile = false;
@@ -24,7 +23,8 @@ public class ProjectApp {
                 List<Project> projects =  ProjectsFileIO.deSerializeFromFile(projectsFile);
                 projectsManager.setProjects(projects);
                 couldReadFile = true;
-                System.out.println("Here");
+            } else {
+                System.out.println("Could not load projects from the file, starting with an empty project list");
             }
 
             MainUI ui = new MainUI(projectsManager);
