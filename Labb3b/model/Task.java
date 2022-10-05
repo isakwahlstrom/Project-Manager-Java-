@@ -1,7 +1,5 @@
 
 package model;
-import model.Prio;
-import model.TaskState;
 import model.exceptions.NameTakenException;
 
 import java.io.Serializable;
@@ -16,8 +14,7 @@ public class Task<T> implements Comparable<Task>, Serializable {
     private LocalDate lastUpdate;
     private Prio prio;
 
-
-    public Task(String descr, Prio prio, int id) {
+     Task(String descr, Prio prio, int id) {
         this.id = id;
         this.prio = prio;
         this.description = descr;
@@ -69,39 +66,34 @@ public class Task<T> implements Comparable<Task>, Serializable {
     @Override
     public String toString() {
         if(takenBy!=null) {
-            return  "Task description: " + description +
+            return  "Task: " + description +
                     ", ID: " + id +
                     ", Priority: " + prio
                     + ", Assigned to: " + takenBy + ", state: " + state + "\n";
         }
-        return " Task Description: " + description  +
+        return " Task: " + description  +
                 ", ID: " + id +
                 ", Priority: " + prio +
                 ", State: " + state + "\n";
 
     }
 
-    public boolean equals(Task o) {
-            return (this.prio == o.getPrio() && this.description == o.getDescription());
-
-    }
     @Override
-    public int compareTo(Task o) {
-        if (this.prio.compareTo(o.prio) > 0) {
-            return -1;
-        } else {
-            if (this.prio.compareTo(o.prio) < 0) {
-                return 1;
-            }
+    public boolean equals(Object obj) {
+        if(obj instanceof Task) {
+            Task task = (Task) obj;
+            return (this.prio.equals(task.getPrio()) && this.description.equals(task.getDescription()));
         }
-        if (this.description.compareTo(o.description) < 0) {
-            return -1;
-        } else {
-            if(this.description.compareTo(o.description) > 0) {
-                return 1;
-            }
-        }
-        return 0;
+        return false;
     }
 
+    @Override
+    public int compareTo(Task other) {
+        int result = 0;
+        result = this.prio.compareTo(other.prio);
+        if (result != 0) return result;
+        else {
+            return (result = this.description.compareTo(other.description));
+        }
+    }
 }
