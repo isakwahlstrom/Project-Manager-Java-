@@ -34,11 +34,11 @@ public class ProjectsFileIO {
      * from file the specified file.
 */
    // @SuppressWarnings("unchecked")
-    public static ArrayList<Project> deSerializeFromFile(File file) throws IOException, ClassNotFoundException {
+    public static List<Project> deSerializeFromFile(File file) throws IOException, ClassNotFoundException {
         ObjectInputStream in = null;
         try {
             in = new ObjectInputStream(new FileInputStream(file));
-            ArrayList<Project> projects = (ArrayList<Project>) in.readObject();
+            List<Project> projects = (List<Project>) in.readObject();
             return projects;
         } finally {
             if(in!=null) {
