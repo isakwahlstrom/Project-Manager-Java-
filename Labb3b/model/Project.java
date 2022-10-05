@@ -1,5 +1,5 @@
-
 package model;
+
 import model.matcher.ITaskMatcher;
 import model.matcher.NotDoneMatcher;
 import java.io.Serializable;
@@ -43,6 +43,7 @@ public class Project<T> implements Comparable<Project>, Serializable {
         }
         return listOfTasks.get(position);
     }
+
     public ArrayList<Task> getListOfTasks() {
         ArrayList<Task> temp = new ArrayList<>();
         for(int i=0;i< listOfTasks.size();i++) {
@@ -50,6 +51,7 @@ public class Project<T> implements Comparable<Project>, Serializable {
         }
         return temp;
     }
+
     public ArrayList<Task> findTasks(ITaskMatcher matcher) {
         ArrayList<Task> tmp = new ArrayList<>();
         for (int i=0;i<listOfTasks.size();i++) {
@@ -63,7 +65,6 @@ public class Project<T> implements Comparable<Project>, Serializable {
 
     public Task addTask(String descr, Prio prio) {
         Task task = new Task(descr,prio,nextTaskId);
-        //task.setState(TaskState.IN_PROGRESS);
         listOfTasks.add(task);
         nextTaskId++;
         return task;
@@ -71,7 +72,6 @@ public class Project<T> implements Comparable<Project>, Serializable {
 
     public Task removeTask(Task task){
         listOfTasks.remove(task);
-        //nextTaskId--;
         return task;
     }
 
@@ -91,7 +91,6 @@ public class Project<T> implements Comparable<Project>, Serializable {
             return created;
         }
         tmp = listOfTasks.get(0);
-        //tmp.getLastUpdate().withMonth(11);
         for(int i=1;i< listOfTasks.size();i++) {
             if(tmp.getLastUpdate().getYear()==(listOfTasks.get(i).getLastUpdate()).getYear()) {
                 if(tmp.getLastUpdate().getDayOfYear()<listOfTasks.get(i).getLastUpdate().getDayOfYear()) {
@@ -129,5 +128,4 @@ public class Project<T> implements Comparable<Project>, Serializable {
                 ", (nextTaskId: " + nextTaskId +
                 ")\n";
     }
-
 }
