@@ -1,4 +1,5 @@
 package ui;
+
 import model.exceptions.NameTakenException;
 import model.matcher.ITaskMatcher;
 import model.matcher.NotDoneMatcher;
@@ -16,6 +17,7 @@ public class CurrentProjectUI {
     private final Scanner scan;
     // package private visibility - only visible to other classes in
     // package ui - intended for MainUI.
+
     CurrentProjectUI(Scanner scan) {
         this.scan = scan;
         this.currentProject = null;
@@ -65,7 +67,6 @@ public class CurrentProjectUI {
                 default:
                     System.out.println("Unknown command");
             }
-
         } while (choice != 'X');
     }
 
@@ -100,9 +101,9 @@ public class CurrentProjectUI {
                     String person = scan.nextLine();
                     task.setState(TaskState.IN_PROGRESS);
                     task.setTakenBy(person);
-                } catch(NameTakenException e){
+               } catch(NameTakenException e){
                    System.out.println("Task already assigned to " + task.getTakenBy());
-                }
+               }
             } else if (stateChar == ('D')) {
                 task.setState(TaskState.DONE);
             }
@@ -134,11 +135,11 @@ public class CurrentProjectUI {
             }
         }
     }
+
     private void removeTask() {
         if(!currentProject.getListOfTasks().isEmpty()) {
             System.out.print("Task id? ");
             int id = scan.nextInt();
-            id--;
             scan.nextLine(); //remove "new line" from scanner buffer
             Task task = currentProject.getTaskById(id);
             currentProject.removeTask(task);
@@ -147,13 +148,15 @@ public class CurrentProjectUI {
             System.out.println("Current project is empty, can not delete task");
         }
     }
+
     private void getProjectState() {
         System.out.println("Project is: " + currentProject.getProjectState());
     }
+
     private void lastUpdated() {
         if(!currentProject.getListOfTasks().isEmpty())
-        System.out.println("Last updated task was: " + currentProject.getLastUpdated());
-       else
-           System.out.println("Project was created: " + currentProject.getLastUpdated());
+            System.out.println("Last updated task was: " + currentProject.getLastUpdated());
+        else
+            System.out.println("Project was created: " + currentProject.getLastUpdated());
     }
 }
