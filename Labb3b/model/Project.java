@@ -60,9 +60,6 @@ public class Project implements Comparable<Project>, Serializable {
         for(int i=0;i< listOfTasks.size();i++) {
             if(id==listOfTasks.get(i).getId())
                position = i;
-            else {
-                throw new IllegalStateException("This task-ID does not exist");
-            }
         }
         return listOfTasks.get(position);
     }
@@ -74,7 +71,7 @@ public class Project implements Comparable<Project>, Serializable {
     public ArrayList<Task> getListOfTasks() {
         ArrayList<Task> temp = new ArrayList<>();
         for(int i=0;i< listOfTasks.size();i++) {
-            temp.add(new Task());
+            //temp.add(i,new Task());
             temp.add(i,listOfTasks.get(i));
         }
         return temp;
@@ -159,26 +156,26 @@ public class Project implements Comparable<Project>, Serializable {
 
     /**
      * Compares two tasks titles
-     * @param other the compared object, downcast to project
+     * @param projectToCompare the compared object, downcast to project
      * @return true if titles are equal, else returns false
      */
     @Override
-    public boolean equals(Object other) {
-        if(other instanceof Project) {
-            Project project = (Project) other;
-            return (this.getTitle().equals(project.getTitle()));
+    public boolean equals(Object projectToCompare) {
+        if(projectToCompare instanceof Project) {
+            Project project = (Project) projectToCompare;
+            return this.title.equals(project.title);
         }
         return false;
     }
 
     /**
      * Compares two tasks titles
-     * @param other the object to be compared
+     * @param o the object to be compared
      * @return integer of the comparison, zero if titles are equal, else positive or negative value
      */
     @Override
-    public int compareTo(Project other) {
-        return this.title.compareTo(other.title);
+    public int compareTo(Project o) {
+        return this.title.compareTo(o.title);
     }
 
     /**
