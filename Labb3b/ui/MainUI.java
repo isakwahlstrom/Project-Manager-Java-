@@ -40,6 +40,9 @@ public class MainUI {
                 case 'M':
                     manageProject();
                     break;
+                case 'T':
+                    printAll();
+                    break;
                 case 'X':
                     break;
                 default:
@@ -100,6 +103,14 @@ public class MainUI {
         System.out.println("A - add project");
         System.out.println("M - manage project");
         System.out.println("X - exit");
+        System.out.println("T - All projects");
         System.out.println("----------");
+    }
+    private void printAll() {
+        for(Project project: manager.getListOfProjects()){
+            System.out.print(project.toString());
+        }
+
+
     }
 }
