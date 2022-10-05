@@ -47,7 +47,7 @@ public class ProjectsManager {
 
     public void removeProject(Project project) {
         listOfProjects.remove(project);
-        nextProjectId--;
+        //nextProjectId--;
     }
 
     public Project getProjectById(int id) {
@@ -55,9 +55,9 @@ public class ProjectsManager {
         for(int i=0;i<listOfProjects.size();i++) {
             if(id==listOfProjects.get(i).getId())
                 position = i;
-            else {
-                throw new IllegalStateException("This project-ID does not exist");
-            }
+            //else {
+              //  throw new IllegalStateException("This project-ID does not exist");
+            //}
         }
         return listOfProjects.get(position);
     }
