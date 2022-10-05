@@ -51,7 +51,7 @@ public class MainUI {
                     System.out.println("Unknown command");
             }
         } while (choice != 'X');
-        System.out.println("Bye bye! This was an ugly ui - I hope I'll learn about JavaFX and gui:s");
+        System.out.println("Bye bye!");
     }
 
     private void findProjects() {
