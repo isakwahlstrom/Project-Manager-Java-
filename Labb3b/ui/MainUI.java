@@ -43,6 +43,8 @@ public class MainUI {
                 case 'T':
                     printAll();
                     break;
+                case 'R':
+                    removeProject();
                 case 'X':
                     break;
                 default:
@@ -102,8 +104,9 @@ public class MainUI {
         System.out.println("F - find project");
         System.out.println("A - add project");
         System.out.println("M - manage project");
-        System.out.println("X - exit");
+        System.out.println("R - Remove project");
         System.out.println("T - All projects");
+        System.out.println("X - exit");
         System.out.println("----------");
     }
     private void printAll() {
@@ -112,5 +115,13 @@ public class MainUI {
         }
 
 
+    }
+    private void removeProject() {
+        System.out.print("Project id? ");
+        int id = scan.nextInt();
+        id--;
+        scan.nextLine(); //remove "new line" from scanner buffer
+        Project currentProject = manager.getProjectById(id);
+        manager.removeProject(currentProject);
     }
 }
