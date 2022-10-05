@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
- //* User interactions for a specific project, current project.
- //* The user selects actions on current project in the projectLoop method.
+//* User interactions for a specific project, current project.
+//* The user selects actions on current project in the projectLoop method.
 
 class CurrentProjectUI {
     private Project currentProject;
@@ -96,13 +96,13 @@ class CurrentProjectUI {
             System.out.print("New state (I)n progress (D)one? ");
             char stateChar = InputUtils.scanAndReturnFirstChar(scan);
             if (stateChar == 'I') {
-               try {
-                    System.out.print("Taken by (name) ");
+                try {
+                    System.out.print("Assign task to: [enter name] ");
                     String person = scan.nextLine();
                     task.setState(TaskState.IN_PROGRESS);
                     task.setTakenBy(person);
                 } catch(NameTakenException e){
-                   System.out.println("Task already assigned to " + task.getTakenBy());
+                    System.out.println("Task already assigned to " + task.getTakenBy());
                 }
             } else if (stateChar == ('D')) {
                 task.setState(TaskState.DONE);
@@ -153,8 +153,8 @@ class CurrentProjectUI {
     }
     private void lastUpdated() {
         if(!currentProject.getListOfTasks().isEmpty())
-        System.out.println("Last updated task was: " + currentProject.getLastUpdated());
-       else
-           System.out.println("Project was created: " + currentProject.getLastUpdated());
+            System.out.println("Last updated task was: " + currentProject.getLastUpdated());
+        else
+            System.out.println("Project was created: " + currentProject.getLastUpdated());
     }
 }
