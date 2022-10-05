@@ -1,8 +1,8 @@
 package model;
 import model.exceptions.TitleNotUniqueException;
-import model.exceptions.TitleNotUniqueException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectsManager {
 
@@ -22,7 +22,7 @@ public class ProjectsManager {
         return list;
     }
 
-    public void setProject(ArrayList<Project> incomingProjects) {
+    public void setProjects(List<Project> incomingProjects) {
         listOfProjects.clear();
         listOfProjects.addAll(incomingProjects);
     }
@@ -51,7 +51,7 @@ public class ProjectsManager {
 
     public Project getProjectById(int id) {
         if (id > listOfProjects.size())
-            throw new IllegalStateException("This project-ID does not exist");     // behövs denna ens?
+            throw new IllegalStateException("This project-ID does not exist");
         return listOfProjects.get(id);
     }
 
