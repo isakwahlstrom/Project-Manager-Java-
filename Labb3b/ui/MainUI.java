@@ -50,7 +50,6 @@ public class MainUI {
                 default:
                     System.out.println("Unknown command");
             }
-
         } while (choice != 'X');
         System.out.println("Bye bye! This was an ugly ui - I hope I'll learn about JavaFX and gui:s");
     }
@@ -78,7 +77,7 @@ public class MainUI {
 
             Project newProject = manager.addProject(title, description);
             System.out.println("Project created: " + newProject);
-        }  catch(TitleNotUniqueException p) {
+        }  catch (TitleNotUniqueException p) {
             System.out.println("Title already exists.");
         }
     }
@@ -88,7 +87,6 @@ public class MainUI {
     private void manageProject() {
         System.out.print("Project id? ");
         int id = scan.nextInt();
-        id--;
         scan.nextLine(); //remove "new line" from scanner buffer
         Project currentProject = manager.getProjectById(id);
         if (currentProject != null) { // TODO: This is ugly!
@@ -109,19 +107,23 @@ public class MainUI {
         System.out.println("X - exit");
         System.out.println("----------");
     }
+
     private void printAll() {
         for(Project project: manager.getListOfProjects()){
             System.out.print(project.toString());
         }
-
-
     }
+
     private void removeProject() {
-        System.out.print("Project id? ");
-        int id = scan.nextInt();
-        id--;
-        scan.nextLine(); //remove "new line" from scanner buffer
-        Project currentProject = manager.getProjectById(id);
-        manager.removeProject(currentProject);
+        if (!manager.getListOfProjects().isEmpty()){
+            System.out.print("Project id? ");
+            int id = scan.nextInt();
+            scan.nextLine(); //remove "new line" from scanner buffer
+            Project currentProject = manager.getProjectById(id);
+            manager.removeProject(currentProject);
+            System.out.println("Removed: " + currentProject.toString());
+        } else {
+            System.out.println("That project doesn't exist");
+        }
     }
 }
