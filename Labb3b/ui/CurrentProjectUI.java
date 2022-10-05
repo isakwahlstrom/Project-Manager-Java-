@@ -4,7 +4,6 @@ import model.matcher.ITaskMatcher;
 import model.matcher.NotDoneMatcher;
 import model.matcher.PrioMatcher;
 import model.*;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,14 +11,14 @@ import java.util.Scanner;
  //* User interactions for a specific project, current project.
  //* The user selects actions on current project in the projectLoop method.
 
-class CurrentProjectUI {
+public class CurrentProjectUI {
     private Project currentProject;
     private final Scanner scan;
     // package private visibility - only visible to other classes in
     // package ui - intended for MainUI.
     CurrentProjectUI(Scanner scan) {
         this.scan = scan;
-        this.currentProject = null; // TODO: Ugly!
+        this.currentProject = null;
     }
 
     void setCurrentProject(Project project) {
