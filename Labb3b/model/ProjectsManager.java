@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.IdNotFoundException;
 import model.exceptions.TitleNotUniqueException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class ProjectsManager {
 
     private int nextProjectId;
-    private ArrayList<Project> listOfProjects;
+    private final ArrayList<Project> listOfProjects;
 
     /**
      * Constructor
@@ -90,12 +91,12 @@ public class ProjectsManager {
      * @return the wanted project
      */
     public Project getProjectById(int id) {
-        int position = 0;
         for(int i=0;i<listOfProjects.size();i++) {
-            if(id==listOfProjects.get(i).getId())
-                position = i;
+            if(id==listOfProjects.get(i).getId()) {
+                return listOfProjects.get(i);
+            }
         }
-        return listOfProjects.get(position);
+        throw new IdNotFoundException("Could not find project with this id.");
     }
 
     /**
