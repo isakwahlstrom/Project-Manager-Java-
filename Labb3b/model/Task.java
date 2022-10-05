@@ -11,12 +11,12 @@ import java.time.LocalDate;
  */
 
 public class Task implements Comparable<Task>, Serializable {
-    private String description;
+    private final String description;
     private int id;
     private String takenBy;
     private TaskState state;
     private LocalDate lastUpdate;
-    private Prio prio;
+    private final Prio prio;
 
     /**
      * (Package private) Constructor
@@ -37,9 +37,9 @@ public class Task implements Comparable<Task>, Serializable {
     /**
      * Package private constructor without parameters, used to copy tasks, and not referencing.
      */
-    Task(){
+    //Task(){
 
-    }
+    //}
 
     public String getDescription() {return description;}
 
