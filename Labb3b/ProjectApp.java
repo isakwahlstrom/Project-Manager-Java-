@@ -1,15 +1,16 @@
-/*import io.ProjectsFileIO;
+import io.ProjectsFileIO;
 import model.Project;
 import model.ProjectsManager;
 import ui.MainUI;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class ProjectApp {
 
-    private static final String FILE_NAME = "projects.ser";
+    private static final String FILE_NAME = "projects.txt";
 
     public void run() throws Exception { // we do not catch all exceptions
 
@@ -18,14 +19,14 @@ public class ProjectApp {
         boolean couldReadFile = false;
 
         try {
-
             if (projectsFile.exists()) {
-                List<Project> projects = ProjectsFileIO.deSerializeFromFile(projectsFile);
+                ArrayList<Project> projects = ProjectsFileIO.deSerializeFromFile(projectsFile);
                 projectsManager.setProjects(projects);
                 couldReadFile = true;
+                System.out.println("Here");
             }
 
-            MainUI ui = new MainUI(projectsManager);
+            MainUI ui = new MainUI(new ProjectsManager());
             ui.mainLoop();
 
         } catch (FileNotFoundException | ClassNotFoundException e) {
@@ -35,10 +36,12 @@ public class ProjectApp {
 
         // run method about to exit - save data
         if(couldReadFile || !projectsFile.exists()) {
-            List<Project> projectsToSave = projectsManager.getProjects();
+            ArrayList<Project> projectsToSave = projectsManager.getListOfProjects();
             ProjectsFileIO.serializeToFile(projectsFile, projectsToSave);
+
         }
         System.out.println("Application exits");
+
     }
 
     public static void main(String[] args) throws Exception {
@@ -48,4 +51,4 @@ public class ProjectApp {
     }
 }
 
- */
+
