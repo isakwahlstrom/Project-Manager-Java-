@@ -115,13 +115,12 @@ public class Project implements Comparable<Project>, Serializable {
 
     @Override
     public String toString() {
-        return "Project{" +
-                "title='" + title + '\'' +
-                ", id=" + id +
-                ", description='" + description + '\'' +
-                ", created=" + created +
-                ", nextTaskId=" + nextTaskId +
-                '}';
+        return "Project: " +  title +
+                ", id: " + id +
+                ", description: " + description  +
+                ", created: " + created +
+                ", (nextTaskId: " + nextTaskId +
+                ")\n";
     }
 
 }
