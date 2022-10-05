@@ -10,13 +10,13 @@ public class ProjectsManager {
     private ArrayList<Project> listOfProjects;
 
     public ProjectsManager() {
-        this.nextProjectId = 1;
+        this.nextProjectId=1;
         listOfProjects = new ArrayList<>();
     }
 
     public ArrayList<Project> getListOfProjects() {
         ArrayList<Project> list = new ArrayList<>();
-        for(int i=0;i< listOfProjects.size();i++) {
+        for(int i=0;i<listOfProjects.size();i++) {
             list.add(i,listOfProjects.get(i));
         }
         return list;
