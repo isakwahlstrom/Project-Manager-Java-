@@ -29,7 +29,7 @@ public class ProjectsManager {
     public ArrayList<Project> getListOfProjects() {
         ArrayList<Project> list = new ArrayList<>();
         for(int i=0;i<listOfProjects.size();i++) {
-            list.add(new Project());
+            //list.add(i,new Project());
             list.add(i,listOfProjects.get(i));
         }
         return list;
