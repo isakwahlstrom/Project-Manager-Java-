@@ -6,11 +6,12 @@ import ui.MainUI;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProjectApp {
 
-    private static final String FILE_NAME = "projects.txt";
+    private static final String FILE_NAME = "projectsss.txt";
 
     public void run() throws Exception { // we do not catch all exceptions
 
@@ -20,13 +21,13 @@ public class ProjectApp {
 
         try {
             if (projectsFile.exists()) {
-                ArrayList<Project> projects = ProjectsFileIO.deSerializeFromFile(projectsFile);
+                List<Project> projects =  ProjectsFileIO.deSerializeFromFile(projectsFile);
                 projectsManager.setProjects(projects);
                 couldReadFile = true;
                 System.out.println("Here");
             }
 
-            MainUI ui = new MainUI(new ProjectsManager());
+            MainUI ui = new MainUI(projectsManager);
             ui.mainLoop();
 
         } catch (FileNotFoundException | ClassNotFoundException e) {
