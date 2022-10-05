@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.IdNotFoundException;
 import model.matcher.ITaskMatcher;
 import model.matcher.NotDoneMatcher;
 import java.io.Serializable;
@@ -12,12 +13,12 @@ import java.util.Collections;
  * @author Isak Wahlström
  */
 public class Project implements Comparable<Project>, Serializable {
-    private String title;
-    private int id;
-    private String description;
-    private LocalDate created;
+    private final String title;
+    private final int id;
+    private final String description;
+    private final LocalDate created;
     private int nextTaskId;
-    private ArrayList<Task> listOfTasks;
+    private final ArrayList<Task> listOfTasks;
 
     /**
      * Package private constructor
@@ -38,9 +39,9 @@ public class Project implements Comparable<Project>, Serializable {
     /**
      * Package private constructor without parameters, used to copy projects, and not referencing.
      */
-    Project() {
+    //Project() {
 
-    }
+    //}
     public String getTitle() { return title; }
     public int getId() { return id; }
 
@@ -56,12 +57,12 @@ public class Project implements Comparable<Project>, Serializable {
      * @return task with this id from the list.
      */
     public Task getTaskById(int id) {
-        int position = 0;
         for(int i=0;i< listOfTasks.size();i++) {
-            if(id==listOfTasks.get(i).getId())
-               position = i;
+            if(id==listOfTasks.get(i).getId()) {
+                return listOfTasks.get(i);
+            }
         }
-        return listOfTasks.get(position);
+        throw new IdNotFoundException("Could not find task with this id.");
     }
 
     /**
