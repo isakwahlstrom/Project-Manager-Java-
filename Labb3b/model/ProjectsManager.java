@@ -42,6 +42,9 @@ public class ProjectsManager {
     public void setProjects(List<Project> incomingProjects) {
         listOfProjects.clear();
         listOfProjects.addAll(incomingProjects);
+        nextProjectId = getHighestId();
+        nextProjectId++;
+
     }
 
     /**
