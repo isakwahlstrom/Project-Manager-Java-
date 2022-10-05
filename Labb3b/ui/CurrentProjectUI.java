@@ -88,7 +88,7 @@ public class CurrentProjectUI {
     private void updateTask() {
         System.out.print("Task id? ");
         int id = scan.nextInt();
-        id--;
+        //id--;
         scan.nextLine(); //remove "new line" from scanner buffer
         Task task = currentProject.getTaskById(id);
         if (task != null) {
